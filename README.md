@@ -44,3 +44,19 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Tic Tac Toe Design
+
+### Feature spec
+
+The goal of this game is to have a one-player game with computer moves to play with. The user is provided with a 3X3 matrix where the user can either start or ask the computer to start the game. User can choose X or O as the symbol to use for the game.
+
+Once the game starts, user and computer play the game turn by turn till either one of them wins or no one wins the game. Once the game is over, there should be a message saying that the game ended with an overlay. 
+
+As an advanced feature, we can have game history, ability to track down steps in a game till the beginning without an ability to modify the game, user profile to track game history, ability to store the game history in google drive or onedrive, add a timeout for each step to be taken by the user, background music to make the game more fun, background themes to make the game look good, User persona, ability to share the game stats in social media as a gif, etc.
+
+### Component design
+
+App.tsx - The main entry point for the game.
+
+Board.tsx - which carries the 3X3 board for the game.
