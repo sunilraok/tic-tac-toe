@@ -1,42 +1,26 @@
 import { FC, useState } from 'react';
+import { BoardState } from './Board.types';
+import { colLength, rowLength } from './BoardConfig';
+import { checkIfAPlayerWon, cloneBoardState, findRandomEmptyCell, getCellId } from './BoardUtilities';
 import Cell from './Cell';
-
-const rowLength = 3;
-const colLength = 3;
-
-const cloneBoardState = (oldBoardState: any[][]): any[][] => {
-  const newBoardState = [];
-
-  for (let i = 0; i < rowLength; i++) {
-    newBoardState.push([...oldBoardState[i]]);
-  }
-
-  return newBoardState;
-}
-
-const getCellId = (xCoor: any, yCoor: any) => ('' + xCoor + 'x' + yCoor);
-
-const findRandomEmptyCell = (boardState: any[][]): number[] => {
-    for (let i = 0; i < rowLength; i++) {
-        for (let j = 0; j < colLength; j++) {
-            if (boardState[i][j] === -1) {
-                return [i, j];
-            }
-        }
-    }
-
-    return [-1, -1];
-};
+import StartButton from './StartButton';
 
 const sleep = (x: number) => {
   return new Promise((resolve) => setTimeout(() => resolve(0), x));
 };
 
-const Board: FC = () => {
-  const matrix = [];
-  const [boardState, setBoardState] = useState([[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]]);
+const defaultBoardState = [
+    [undefined, undefined, undefined],
+    [undefined, undefined, undefined],
+    [undefined, undefined, undefined]
+  ];
 
-  const getComputerMove = (boardState: any[][]) => {
+const Board: FC = () => {
+  const [boardState, setBoardState] = useState<BoardState>(defaultBoardState);
+  const [winner, setWinner] = useState('');
+  const [editable, setEditable] = useState(true);
+
+  const getComputerMove = (boardState: BoardState) => {
     const newBoardState = cloneBoardState(boardState);
     const coords = findRandomEmptyCell(newBoardState);
 
@@ -48,16 +32,41 @@ const Board: FC = () => {
   };
 
   const onCellClick = (xCoor: number, yCoor: number) => {
+    if (!editable) {
+      return;
+    }
+
     const newBoardState = cloneBoardState(boardState);
     newBoardState[xCoor][yCoor] = 'X';
     setBoardState(newBoardState);
+    const winner = checkIfAPlayerWon(newBoardState);
+    if (winner) {
+        setWinner(winner);
+        setEditable(false);
+        return;
+    }
 
-    sleep(1000).then(() => {
+
+    sleep(100).then(() => {
       const boardStateAfterCompMove = getComputerMove(newBoardState);
       setBoardState(boardStateAfterCompMove);
+      const winner = checkIfAPlayerWon(boardStateAfterCompMove);
+      if (winner) {
+        setWinner(winner);
+        setEditable(false);
+        return;
+      }
     });
   };
 
+  const onStart = () => {
+    const newBoardState = cloneBoardState(defaultBoardState);
+    setBoardState(newBoardState);
+    setWinner('');
+    setEditable(true);
+  };
+
+  const matrix = [];
   for (let i = 0; i < rowLength; i++) {
       for (let j = 0; j < colLength; j++) {
         matrix.push(<Cell key={getCellId(i, j)} xCoor={i} yCoor={j} onClick={onCellClick} cellValue={boardState[i][j]}/>);
@@ -65,8 +74,16 @@ const Board: FC = () => {
 
       matrix.push(<br key={getCellId(i, -1)}/>);
   }
-  
-  return (<div className='board'>{matrix}</div>);
+
+  return (<>
+    <div className='Board'>{matrix}</div>
+    <div className='StartButton'>
+      <StartButton onStart={onStart} />
+    </div>
+    <div className='WinnerMessage'>
+      {winner && <div><b>Winner:</b> {winner}</div>}
+    </div>
+    </>);
 };
 
 export default Board;
