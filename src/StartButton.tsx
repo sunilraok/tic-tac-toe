@@ -5,7 +5,7 @@ export interface StartButtonProps {
 }
 
 const StartButton: FC<StartButtonProps> = ({ onStart }) => (
-  <input type='button' className='StartButtonInput' value='Start a new game' onClick={onStart}/>
+  <input type='button' className='StartButtonInput' value='Start' onClick={onStart}/>
 );
 
 export default StartButton;

@@ -3,10 +3,8 @@ import Board from "./Board";
 
 const TicTacToe: FC = () => (
   <>
-    <h3>Tic Tac Toe</h3>
-    <div className="TicTacToe">
-      <Board />
-    </div>
+    <h1>Tic Tac Toe</h1>
+    <Board />
   </>
 );
 

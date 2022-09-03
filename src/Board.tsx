@@ -81,7 +81,7 @@ const Board: FC = () => {
       <StartButton onStart={onStart} />
     </div>
     <div className='WinnerMessage'>
-      {winner && <div><b>Winner:</b> {winner}</div>}
+      {!!winner ? <div><b>Winner:</b> {winner}</div> : <><br/></>}
     </div>
     </>);
 };
