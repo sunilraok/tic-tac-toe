@@ -59,7 +59,7 @@ const Board: FC = () => {
     });
   };
 
-  const onStart = () => {
+  const onRestart = () => {
     const newBoardState = cloneBoardState(defaultBoardState);
     setBoardState(newBoardState);
     setWinner('');
@@ -71,17 +71,15 @@ const Board: FC = () => {
       for (let j = 0; j < colLength; j++) {
         matrix.push(<Cell key={getCellId(i, j)} xCoor={i} yCoor={j} onClick={onCellClick} cellValue={boardState[i][j]}/>);
       }
-
-      matrix.push(<br key={getCellId(i, -1)}/>);
   }
 
   return (<>
     <div className='Board'>{matrix}</div>
-    <div className='StartButton'>
-      <StartButton onStart={onStart} />
-    </div>
     <div className='WinnerMessage'>
       {!!winner ? <div><b>Winner:</b> {winner}</div> : <><br/></>}
+    </div>
+    <div className='StartButton'>
+      {!!winner ? <StartButton onRestart={onRestart} /> : <></>}
     </div>
     </>);
 };

@@ -1,53 +1,121 @@
-.App {
-  text-align: center;
-  max-width: 500px;
-  margin: 100px auto;
-  background-color: burlywood;
+* {
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 18px;
-  padding-top: 10px;
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a4fd1 0%, #8b6ff0 45%, #b79cf7 100%);
+  padding: 24px;
 }
 
 .App-link {
   color: #61dafb;
 }
 
+.GameCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 32px 40px 40px;
+  box-shadow: 0 20px 60px rgba(51, 27, 122, 0.35);
+}
+
+.Title {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #3c2a78;
+}
+
 .Board {
-  margin-top: 25px;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  grid-template-rows: repeat(3, 96px);
+  gap: 8px;
   background-color: rgb(113, 73, 221);
-  border-color: white;
-  padding: 25px;
+  padding: 8px;
+  border-radius: 16px;
 }
 
 .Cell {
-  width: 100px;
-  height: 100px;
-  margin: 2px;
-  font-size: 25px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 40px;
+  font-weight: 700;
   text-align: center;
   background-color: rgb(236, 232, 247);
+  caret-color: transparent;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
-.StartButton {
-  padding-bottom: 10px;
+.Cell:focus {
+  outline: none;
 }
 
-.StartButtonInput {
-  border-radius: 12px;
-  font-size: 12px;
-  height: 30px;
-  width: 100px;
-  font-size: 15px;
+.Cell-empty {
+  cursor: pointer;
+}
+
+.Cell-empty:hover {
+  background-color: rgb(219, 209, 250);
+  transform: scale(1.03);
+}
+
+.Cell-filled {
+  cursor: default;
+}
+
+.Cell-x {
+  color: #4b2fc4;
+}
+
+.Cell-o {
+  color: #e0578a;
 }
 
 .WinnerMessage {
+  font-size: 17px;
+  font-weight: 600;
+  color: #3c2a78;
+  padding-top: 18px;
+  min-height: 24px;
+}
+
+.StartButton {
+  padding-top: 12px;
+}
+
+.StartButtonInput {
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  width: 130px;
   font-size: 15px;
-  color: black;
-  padding-top: 5px;
-  padding-bottom: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7149dd, #b184f5);
+  box-shadow: 0 6px 16px rgba(113, 73, 221, 0.4);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.StartButtonInput:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(113, 73, 221, 0.5);
+}
+
+.StartButtonInput:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(113, 73, 221, 0.4);
 }

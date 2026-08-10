@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-export interface StartButtonProps {
-  readonly onStart: () => void;
+export interface RestartButtonProps {
+  readonly onRestart: () => void;
 }
 
-const StartButton: FC<StartButtonProps> = ({ onStart }) => (
-  <input type='button' className='StartButtonInput' value='Start' onClick={onStart}/>
+const RestartButton: FC<RestartButtonProps> = ({ onRestart }) => (
+  <input type='button' className='StartButtonInput' value='Restart' onClick={onRestart}/>
 );
 
-export default StartButton;
+export default RestartButton;

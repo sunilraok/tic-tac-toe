@@ -20,9 +20,15 @@ const Cell: FC<CellProps> = ({ xCoor, yCoor, cellValue, onClick }) => {
   };
 
   const actualCellValue = cellValue ?? '';
+  const cellClassName = [
+    'Cell',
+    cellValue ? 'Cell-filled' : 'Cell-empty',
+    cellValue === 'X' ? 'Cell-x' : '',
+    cellValue === 'O' ? 'Cell-o' : '',
+  ].filter(Boolean).join(' ');
 
   return (
-    <input key={getCellId(xCoor, yCoor)} className='Cell' type='text' onClick={onCellClick} value={actualCellValue} readOnly={true}/>
+    <input key={getCellId(xCoor, yCoor)} className={cellClassName} type='text' onClick={onCellClick} value={actualCellValue} readOnly={true}/>
   );
 };
 
