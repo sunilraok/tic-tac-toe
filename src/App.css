@@ -124,6 +124,10 @@
   padding-top: 12px;
 }
 
+.StartButton-hidden .StartButtonInput {
+  visibility: hidden;
+}
+
 .StartButtonInput {
   border: none;
   border-radius: 20px;

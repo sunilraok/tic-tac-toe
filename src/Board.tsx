@@ -78,8 +78,8 @@ const Board: FC = () => {
     <div className='WinnerMessage'>
       {!!winner ? <div><b>Winner:</b> {winner}</div> : <><br/></>}
     </div>
-    <div className='StartButton'>
-      {!!winner ? <StartButton onRestart={onRestart} /> : <></>}
+    <div className={`StartButton${!winner ? ' StartButton-hidden' : ''}`}>
+      <StartButton onRestart={onRestart} />
     </div>
     </>);
 };
