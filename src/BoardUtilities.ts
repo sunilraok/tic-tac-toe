@@ -3,7 +3,7 @@ import { colLength, rowLength } from "./BoardConfig";
 
 const getWinner = (playerCharacter: CellValue) => {
     if (playerCharacter === 'X') {
-        return 'user';
+        return 'You';
     } else if (playerCharacter === 'O') {
         return 'computer';
     }
