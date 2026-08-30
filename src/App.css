@@ -3,17 +3,43 @@
 }
 
 .App {
+  position: relative;
   min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #6a4fd1 0%, #8b6ff0 45%, #b79cf7 100%);
+  background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 45%, var(--bg-end) 100%);
   padding: 24px;
+  transition: background 0.2s ease;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.ThemeToggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  background-color: var(--toggle-bg);
+  color: var(--toggle-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.ThemeToggle:hover {
+  background-color: var(--toggle-bg-hover);
+  transform: scale(1.05);
 }
 
 .GameCard {
@@ -21,10 +47,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border-radius: 24px;
   padding: 32px 40px 40px;
-  box-shadow: 0 20px 60px rgba(51, 27, 122, 0.35);
+  box-shadow: 0 20px 60px var(--card-shadow);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .Title {
@@ -32,7 +59,7 @@
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #3c2a78;
+  color: var(--title-color);
 }
 
 .Board {
@@ -40,9 +67,10 @@
   grid-template-columns: repeat(3, 96px);
   grid-template-rows: repeat(3, 96px);
   gap: 8px;
-  background-color: rgb(113, 73, 221);
+  background-color: var(--board-bg);
   padding: 8px;
   border-radius: 16px;
+  transition: background-color 0.2s ease;
 }
 
 .Cell {
@@ -54,7 +82,7 @@
   font-size: 40px;
   font-weight: 700;
   text-align: center;
-  background-color: rgb(236, 232, 247);
+  background-color: var(--cell-bg);
   caret-color: transparent;
   transition: background-color 0.15s ease, transform 0.1s ease;
 }
@@ -68,7 +96,7 @@
 }
 
 .Cell-empty:hover {
-  background-color: rgb(219, 209, 250);
+  background-color: var(--cell-hover-bg);
   transform: scale(1.03);
 }
 
@@ -77,17 +105,17 @@
 }
 
 .Cell-x {
-  color: #4b2fc4;
+  color: var(--cell-x-color);
 }
 
 .Cell-o {
-  color: #e0578a;
+  color: var(--cell-o-color);
 }
 
 .WinnerMessage {
   font-size: 17px;
   font-weight: 600;
-  color: #3c2a78;
+  color: var(--winner-color);
   padding-top: 18px;
   min-height: 24px;
 }
@@ -104,18 +132,18 @@
   font-size: 15px;
   font-weight: 600;
   color: #ffffff;
-  background: linear-gradient(135deg, #7149dd, #b184f5);
-  box-shadow: 0 6px 16px rgba(113, 73, 221, 0.4);
+  background: linear-gradient(135deg, var(--button-start), var(--button-end));
+  box-shadow: 0 6px 16px var(--button-shadow);
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.15s ease;
 }
 
 .StartButtonInput:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(113, 73, 221, 0.5);
+  box-shadow: 0 8px 20px var(--button-shadow-hover);
 }
 
 .StartButtonInput:active {
   transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(113, 73, 221, 0.4);
+  box-shadow: 0 4px 10px var(--button-shadow);
 }
